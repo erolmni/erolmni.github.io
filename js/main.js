@@ -7,37 +7,42 @@
   const $$ = (selector, scope = document) => Array.from(scope.querySelectorAll(selector));
   const scrollBehavior = reduceMotion ? 'auto' : 'smooth';
 
-  /* ---------- Header & full-screen menu ---------- */
+  /* ---------- Header & mobile menu ---------- */
 
   const header = $('#header');
   const menu = $('#menu');
   const menuToggle = $('#menu-toggle');
 
   const setMenu = (open) => {
+    if (!menu || !menuToggle) return;
     menuToggle.setAttribute('aria-expanded', String(open));
     $('.sr-only', menuToggle).textContent = open ? 'Close menu' : 'Open menu';
     menu.classList.toggle('is-open', open);
-    document.body.classList.toggle('menu-open', open);
-    if (open) $('a', menu).focus();
   };
 
   if (menu && menuToggle) {
     menuToggle.addEventListener('click', () => setMenu(menuToggle.getAttribute('aria-expanded') !== 'true'));
+    menu.addEventListener('click', (event) => {
+      if (event.target.closest('a')) setMenu(false);
+    });
     document.addEventListener('keydown', (event) => {
       if (event.key === 'Escape' && menu.classList.contains('is-open')) {
         setMenu(false);
         menuToggle.focus();
       }
     });
-    // Keep keyboard focus inside the open menu (and its toggle)
-    document.addEventListener('focusin', (event) => {
-      if (menu.classList.contains('is-open') && !menu.contains(event.target) && event.target !== menuToggle) {
-        $('a', menu).focus();
-      }
+    document.addEventListener('click', (event) => {
+      if (menu.classList.contains('is-open') && !event.target.closest('#menu, #menu-toggle')) setMenu(false);
     });
+    const desktop = window.matchMedia('(min-width: 901px)');
+    const onDesktop = (event) => {
+      if (event.matches) setMenu(false);
+    };
+    if (desktop.addEventListener) desktop.addEventListener('change', onDesktop);
+    else if (desktop.addListener) desktop.addListener(onDesktop);
   }
 
-  const onScroll = () => header && header.classList.toggle('is-scrolled', window.scrollY > 24);
+  const onScroll = () => header && header.classList.toggle('is-scrolled', window.scrollY > 12);
   onScroll();
   window.addEventListener('scroll', onScroll, { passive: true });
 
@@ -60,7 +65,7 @@
     const target = document.getElementById(decodeURIComponent(url.hash.slice(1)));
     if (!target) return;
     event.preventDefault();
-    if (menu && menu.classList.contains('is-open')) setMenu(false);
+    setMenu(false);
     goTo(target);
     cleanUrl();
   });
@@ -72,14 +77,7 @@
     if (target) requestAnimationFrame(() => target.scrollIntoView({ block: 'start' }));
   }
 
-  // Close the menu after following any of its links
-  if (menu) {
-    menu.addEventListener('click', (event) => {
-      if (event.target.closest('a')) setMenu(false);
-    });
-  }
-
-  /* ---------- Reveal on scroll ---------- */
+  /* ---------- Reveal on scroll (content is never hidden) ---------- */
 
   const revealItems = $$('.reveal');
   if ('IntersectionObserver' in window && !reduceMotion) {
@@ -97,6 +95,19 @@
     revealItems.forEach((item) => observer.observe(item));
   } else {
     revealItems.forEach((item) => item.classList.add('is-visible'));
+  }
+
+  /* ---------- Hero: pause the drifting language rows ---------- */
+
+  const weave = $('#weave');
+  const weaveToggle = $('#weave-toggle');
+  if (weave && weaveToggle) {
+    weaveToggle.addEventListener('click', () => {
+      const paused = !weave.classList.contains('is-paused');
+      weave.classList.toggle('is-paused', paused);
+      weaveToggle.setAttribute('aria-pressed', String(paused));
+      $('span', weaveToggle).textContent = paused ? 'Play animation' : 'Pause animation';
+    });
   }
 
   /* ---------- Languages by district ----------
@@ -125,85 +136,22 @@
   const VALLEY = ['Imphal West', 'Imphal East', 'Thoubal', 'Bishnupur', 'Kakching'];
   const GROUPS = { valley: { label: 'Imphal valley', districts: VALLEY } };
   Object.keys(DISTRICTS).forEach((name) => {
-    if (!VALLEY.includes(name)) GROUPS[name.toLowerCase().replace(/[^a-z]+/g, '-')] = { label: name, districts: [name] };
+    if (VALLEY.indexOf(name) === -1) GROUPS[name.toLowerCase().replace(/[^a-z]+/g, '-')] = { label: name, districts: [name] };
   });
 
   const LANGUAGES = {};
   const entry = (lang) => (LANGUAGES[lang] = LANGUAGES[lang] || { main: [], also: [] });
-  Object.entries(DISTRICTS).forEach(([district, { main, also }]) => {
-    main.forEach((lang) => entry(lang).main.push(district));
-    also.forEach((lang) => entry(lang).also.push(district));
+  Object.keys(DISTRICTS).forEach((district) => {
+    DISTRICTS[district].main.forEach((lang) => entry(lang).main.push(district));
+    DISTRICTS[district].also.forEach((lang) => entry(lang).also.push(district));
   });
 
   const list = (items) => (items.length <= 1 ? items.join('') : `${items.slice(0, -1).join(', ')} and ${items[items.length - 1]}`);
-  const unique = (items) => [...new Set(items)];
+  const unique = (items) => items.filter((item, i) => items.indexOf(item) === i);
   const escapeHtml = (text) => text.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
   const strongList = (items) => list(items.map((item) => `<strong>${escapeHtml(item)}</strong>`));
 
-  const describe = (lang) => {
-    if (lang === 'Meiteilon') return 'Official language of Manipur';
-    const info = LANGUAGES[lang];
-    if (!info) return 'Spoken by smaller communities across Manipur';
-    return info.main.length ? `Main language in ${list(info.main)}` : `Spoken in ${list(info.also)}`;
-  };
-
   const chips = $$('.chip');
-  const languageNames = chips.map((chip) => chip.dataset.lang);
-
-  /* ---------- Hero: "now speaking" box ---------- */
-
-  const nowBox = $('#now-box');
-  if (nowBox && languageNames.length) {
-    const word = $('#now-word');
-    const native = $('#now-native');
-    const where = $('#now-where');
-    const toggle = $('#now-toggle');
-
-    const order = languageNames.filter((name) => name !== 'Meiteilon');
-    for (let i = order.length - 1; i > 0; i -= 1) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [order[i], order[j]] = [order[j], order[i]];
-    }
-    order.unshift('Meiteilon');
-
-    let index = 0;
-    let timer = null;
-
-    const show = (i) => {
-      const lang = order[i];
-      word.textContent = lang;
-      native.hidden = lang !== 'Meiteilon';
-      where.textContent = describe(lang);
-    };
-
-    const next = () => {
-      nowBox.classList.add('is-changing');
-      setTimeout(() => {
-        index = (index + 1) % order.length;
-        show(index);
-        nowBox.classList.remove('is-changing');
-      }, 300);
-    };
-
-    const play = () => {
-      clearInterval(timer);
-      timer = setInterval(next, 2600);
-      toggle.setAttribute('aria-pressed', 'false');
-      $('.sr-only', toggle).textContent = 'Pause the language slideshow';
-    };
-
-    const pause = () => {
-      clearInterval(timer);
-      timer = null;
-      toggle.setAttribute('aria-pressed', 'true');
-      $('.sr-only', toggle).textContent = 'Play the language slideshow';
-    };
-
-    show(0);
-    if (reduceMotion) pause();
-    else play();
-    toggle.addEventListener('click', () => (timer ? pause() : play()));
-  }
 
   /* ---------- Language map ---------- */
 
@@ -221,17 +169,16 @@
     const initial = { title: title.textContent, main: main.textContent };
     let selection = null;
 
-    const groupOf = (district) => Object.keys(GROUPS).find((id) => GROUPS[id].districts.includes(district));
+    const groupOf = (district) => Object.keys(GROUPS).filter((id) => GROUPS[id].districts.indexOf(district) !== -1)[0];
 
     const highlight = (districts) => {
-      const active = new Set(districts);
-      const groups = new Set(districts.map(groupOf));
-      const any = active.size > 0;
+      const groups = districts.map(groupOf);
+      const any = districts.length > 0;
       map.classList.toggle('has-selection', any);
       frame.classList.toggle('has-selection', any);
-      paths.forEach((p) => p.classList.toggle('is-active', active.has(p.dataset.district)));
-      leaders.forEach((el) => el.classList.toggle('is-active', groups.has(el.dataset.group)));
-      callouts.forEach((b) => b.setAttribute('aria-pressed', String(groups.has(b.dataset.group))));
+      paths.forEach((p) => p.classList.toggle('is-active', districts.indexOf(p.dataset.district) !== -1));
+      leaders.forEach((el) => el.classList.toggle('is-active', groups.indexOf(el.dataset.group) !== -1));
+      callouts.forEach((b) => b.setAttribute('aria-pressed', String(groups.indexOf(b.dataset.group) !== -1)));
     };
 
     const setInfo = (info) => {
@@ -248,8 +195,8 @@
     };
 
     const districtInfo = (districts, label) => {
-      const mains = unique(districts.flatMap((d) => DISTRICTS[d].main));
-      const alsos = unique(districts.flatMap((d) => DISTRICTS[d].also)).filter((l) => !mains.includes(l));
+      const mains = unique([].concat(...districts.map((d) => DISTRICTS[d].main)));
+      const alsos = unique([].concat(...districts.map((d) => DISTRICTS[d].also))).filter((l) => mains.indexOf(l) === -1);
       return {
         title: label,
         main: `Main languages: ${strongList(mains)}.`,
@@ -292,7 +239,7 @@
         setInfo(districtInfo([id], `${id} district`));
       } else {
         const info = LANGUAGES[id];
-        highlight(info ? [...info.main, ...info.also] : []);
+        highlight(info ? info.main.concat(info.also) : []);
         setInfo(languageInfo(id));
       }
     };
@@ -347,7 +294,7 @@
       const query = normalize(search.value.trim());
       let shown = 0;
       chips.forEach((chip) => {
-        const match = !query || normalize(`${chip.textContent} ${chip.dataset.aliases || ''}`).includes(query);
+        const match = !query || normalize(`${chip.textContent} ${chip.dataset.aliases || ''}`).indexOf(query) !== -1;
         chip.parentElement.hidden = !match;
         if (match) shown += 1;
       });
@@ -360,20 +307,22 @@
 
   const copyBtn = $('#copy-email');
   if (copyBtn) {
-    copyBtn.addEventListener('click', async () => {
+    copyBtn.addEventListener('click', () => {
       const label = $('span', copyBtn);
-      try {
-        await navigator.clipboard.writeText(copyBtn.dataset.copy);
-        label.textContent = 'Copied';
-      } catch {
+      const fallback = () => {
         const range = document.createRange();
         range.selectNodeContents($('#email-link'));
         const sel = window.getSelection();
         sel.removeAllRanges();
         sel.addRange(range);
         label.textContent = 'Press Ctrl+C';
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(copyBtn.dataset.copy).then(() => { label.textContent = 'Copied'; }, fallback);
+      } else {
+        fallback();
       }
-      setTimeout(() => (label.textContent = 'Copy'), 2200);
+      setTimeout(() => { label.textContent = 'Copy'; }, 2200);
     });
   }
 

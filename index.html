@@ -3,31 +3,48 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>EROL — Manipuri Language Service</title>
-  <meta name="description" content="Manipuri (Meiteilon) translation, transcription, subtitling, proofreading, voiceover and localization from Imphal, Manipur — plus open language technology for Manipuri.">
-  <meta name="theme-color" content="#f5f1e8" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#121110" media="(prefers-color-scheme: dark)">
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; form-action mailto:; base-uri 'self'; object-src 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+
+  <title>EROL · Translation for every language of Manipur</title>
+  <meta name="description" content="EROL translates, transcribes, subtitles and voices content in Meiteilon (Manipuri) and the tribal languages of Manipur, including Tangkhul, Thadou, Rongmei, Paite, Hmar, Mao and Poumai. Based in Imphal.">
   <link rel="canonical" href="https://erolmni.github.io/">
+  <meta name="theme-color" content="#2a1424">
+
+  <link rel="icon" href="assets/favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
 
   <meta property="og:type" content="website">
+  <meta property="og:site_name" content="EROL">
+  <meta property="og:locale" content="en_IN">
   <meta property="og:url" content="https://erolmni.github.io/">
-  <meta property="og:title" content="EROL — Manipuri Language Service">
-  <meta property="og:description" content="Accurate, culturally appropriate translation and localization for Manipuri (Meiteilon). Based in Imphal, Manipur.">
+  <meta property="og:title" content="EROL · Translation for every language of Manipur">
+  <meta property="og:description" content="Translation, transcription, subtitling and voiceover in Meiteilon and the tribal languages of Manipur. Based in Imphal.">
+  <meta property="og:image" content="https://erolmni.github.io/assets/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="EROL: translation for every language of Manipur">
+  <meta name="twitter:card" content="summary_large_image">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;1,9..144,400;1,9..144,600&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&family=Noto+Sans+Meetei+Mayek:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Raleway:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Meetei+Mayek:wght@500&display=swap&text=%EA%AF%83%EA%AF%A9%EA%AF%87%EA%AF%82%EA%AF%A3%EA%AF%9F">
   <link rel="stylesheet" href="css/styles.css">
+  <script src="js/main.js" defer></script>
 
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Organization",
+    "@type": "ProfessionalService",
     "name": "EROL Manipuri Language Service",
     "alternateName": "EROL",
     "url": "https://erolmni.github.io/",
-    "description": "Manipuri (Meiteilon) translation and localization services.",
+    "logo": "https://erolmni.github.io/assets/icon-512.png",
+    "image": "https://erolmni.github.io/assets/og-image.jpg",
+    "description": "Translation, transcription, subtitling, voiceover and localization in Meiteilon (Manipuri) and the tribal languages of Manipur.",
+    "email": "erolmanipuri@gmail.com",
     "foundingDate": "2025",
     "address": {
       "@type": "PostalAddress",
@@ -36,6 +53,8 @@
       "postalCode": "795148",
       "addressCountry": "IN"
     },
+    "areaServed": { "@type": "State", "name": "Manipur" },
+    "knowsLanguage": ["Meitei", "Aimol", "Anal", "Bengali", "Chiru", "Chothe", "Gangte", "Hmar", "Inpui", "Kharam", "Koireng", "Kom", "Lamkang", "Liangmai", "Mao", "Maram", "Maring", "Mizo", "Monsang", "Moyon", "Nepali", "Paite", "Poumai", "Purum", "Rongmei", "Simte", "Tangkhul", "Tarao", "Thadou", "Thangal", "Vaiphei", "Zeme", "Zou", "English", "Hindi"],
     "sameAs": [
       "https://www.linkedin.com/company/erolmni",
       "https://www.instagram.com/erolmni/",
@@ -46,378 +65,636 @@
   </script>
 </head>
 <body>
+  <!-- Icon sprite -->
+  <svg class="sprite" aria-hidden="true" focusable="false">
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6"/></symbol>
+    <symbol id="i-pause" viewBox="0 0 24 24"><path d="M9 6v12M15 6v12"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.5v13l10-6.5-10-6.5z"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M4 7l8 6 8-6"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8.5" y="8.5" width="11" height="11" rx="2.2"/><path d="M15.5 8.5V6.7a2.2 2.2 0 0 0-2.2-2.2H6.7a2.2 2.2 0 0 0-2.2 2.2v6.6a2.2 2.2 0 0 0 2.2 2.2h1.8"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+    <symbol id="i-swap" viewBox="0 0 24 24"><path d="M4 8h13M13 4l4 4-4 4"/><path d="M20 16H7m4-4-4 4 4 4"/></symbol>
+    <symbol id="i-file" viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8l-5-5z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></symbol>
+    <symbol id="i-captions" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M7 12h4m2 0h4M7 15.5h2m2 0h6"/></symbol>
+    <symbol id="i-pen" viewBox="0 0 24 24"><path d="M4 20h4L19 9l-4-4L4 16v4z"/><path d="M13.5 6.5l4 4"/></symbol>
+    <symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21M8.5 21h7"/></symbol>
+    <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></symbol>
+    <symbol id="i-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5 5-2z"/></symbol>
+    <symbol id="i-script" viewBox="0 0 24 24"><path d="M4 6h8M8 6v12M5 18h6"/><path d="M14 10h6M17 10c0 4-1.5 6.5-4 8M15 14c1.3 1.6 3 3 5 4"/></symbol>
+    <symbol id="i-wave" viewBox="0 0 24 24"><path d="M3 12h2M7 8v8M11 5v14M15 9v6M19 7v10M21 12h0"/></symbol>
+    <symbol id="i-landmark" viewBox="0 0 24 24"><path d="M3 9.5L12 4l9 5.5M5 10v8M9.5 10v8M14.5 10v8M19 10v8M3 20.5h18"/></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20s-7.5-4.6-7.5-10.2A4.3 4.3 0 0 1 12 7.3a4.3 4.3 0 0 1 7.5 2.5C19.5 15.4 12 20 12 20z"/><path d="M8.5 12h2l1-2 1.5 4 1-2h1.5"/></symbol>
+    <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5v-15z"/><path d="M4 20.5A2.5 2.5 0 0 1 6.5 18H20v3H6.5"/></symbol>
+    <symbol id="i-hands" viewBox="0 0 24 24"><circle cx="8" cy="7" r="2.5"/><circle cx="16" cy="7" r="2.5"/><path d="M3.5 19c0-3 2-5.5 4.5-5.5s4 1.6 4 1.6 1.5-1.6 4-1.6 4.5 2.5 4.5 5.5"/></symbol>
+    <symbol id="i-scale" viewBox="0 0 24 24"><path d="M12 4v16M7 20h10M5 7h14"/><path d="M5 7l-3 6a3 3 0 0 0 6 0L5 7zM19 7l-3 6a3 3 0 0 0 6 0l-3-6z"/></symbol>
+    <symbol id="i-film" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2.5"/><path d="M7 4v16M17 4v16M3 9h4m10 0h4M3 15h4m10 0h4"/></symbol>
+    <symbol id="i-bag" viewBox="0 0 24 24"><path d="M5 8h14l-1 12H6L5 8z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/></symbol>
+    <symbol id="i-chip" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9.5 9.5h5v5h-5zM9 3v3m6-3v3M9 18v3m6-3v3M3 9h3m-3 6h3m12-6h3m-3 6h3"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l7.5 3v5.5c0 4.6-3.2 8.3-7.5 9.5-4.3-1.2-7.5-4.9-7.5-9.5V6L12 3z"/><path d="M8.8 12l2.2 2.2 4.3-4.4"/></symbol>
+    <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3 19.5c0-3.3 2.7-5.5 6-5.5s6 2.2 6 5.5"/><path d="M15.5 4.9a3.2 3.2 0 0 1 0 6.2M17.5 14.3c2.1.6 3.5 2.6 3.5 5.2"/></symbol>
+    <symbol id="i-list" viewBox="0 0 24 24"><path d="M9 6h11M9 12h11M9 18h11"/><path d="M4 6h.01M4 12h.01M4 18h.01"/></symbol>
+    <symbol id="i-linkedin" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3.5"/><path d="M8 10.5V16M8 7.8v.01M11.5 16v-5.5M11.5 13c0-1.6 1-2.6 2.4-2.6 1.4 0 2.1.9 2.1 2.6V16"/></symbol>
+    <symbol id="i-instagram" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="3.8"/><path d="M17 7h.01"/></symbol>
+    <symbol id="i-github" viewBox="0 0 24 24"><path d="M9 19c-4 1.3-4-2-5.6-2.5M14.6 21v-3.4c0-1 .1-1.4-.5-2 2.8-.3 5.4-1.4 5.4-6 0-1.2-.4-2.3-1.2-3.2.1-.3.5-1.5-.1-3.1 0 0-1-.3-3.3 1.2a11.4 11.4 0 0 0-6 0C6.6 3 5.6 3.3 5.6 3.3c-.6 1.6-.2 2.8-.1 3.1-.8.9-1.2 2-1.2 3.2 0 4.6 2.6 5.7 5.4 6-.6.6-.6 1.2-.5 2V21"/></symbol>
+    <symbol id="i-hf" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M8.6 10.2v.01M15.4 10.2v.01M8.5 14c1 1.4 2.2 2 3.5 2s2.5-.6 3.5-2"/></symbol>
+  </svg>
+
   <a class="skip-link" href="#main">Skip to content</a>
+  <div class="progress" aria-hidden="true"><span class="progress-bar"></span></div>
 
-  <header class="site-header">
-    <div class="container nav">
-      <a href="#top" class="brand" aria-label="EROL — home">
-        <span class="brand-mark">EROL</span>
-        <span class="brand-sub">Manipuri Language Service</span>
+  <!-- Navigation -->
+  <header class="nav-wrap">
+    <nav class="nav" aria-label="Main">
+      <a class="brand" href="#top" aria-label="EROL, back to top">
+        <img class="brand-mark" src="assets/erol-mark.jpg" alt="" width="40" height="40">
+        <span class="brand-name">EROL</span>
+        <span class="brand-sub">Language<br>Service</span>
       </a>
-
-      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu">
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#languages">Languages</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#process">Process</a></li>
+        <li><a href="#lab">Lab</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <a class="btn btn-primary btn-sm nav-cta" href="#contact">Get a quote</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">
         <span class="sr-only">Menu</span>
         <span class="nav-toggle-bar" aria-hidden="true"></span>
         <span class="nav-toggle-bar" aria-hidden="true"></span>
       </button>
-
-      <nav id="nav-menu" class="nav-menu" aria-label="Main">
-        <a href="#services">Services</a>
-        <a href="#process">Process</a>
-        <a href="#lab">EROL Lab</a>
-        <a href="#about">About</a>
-        <a href="#contact" class="btn btn-small">Get a quote</a>
-      </nav>
-    </div>
-    <div class="stripes" aria-hidden="true">
-      <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
-    </div>
+    </nav>
   </header>
 
   <main id="main">
     <!-- Hero -->
     <section class="hero" id="top">
+      <div class="hero-texture" aria-hidden="true">
+        <p>Aimol · Anal · Bengali · Chiru · Chothe · Gangte · Hmar · Inpui · Kharam · Koireng · Kom</p>
+        <p>Lamkang · Liangmai · Mao · Maram · Maring · Meiteilon · Mizo · Monsang · Moyon · Nepali</p>
+        <p>Paite · Poumai · Purum · Rongmei · Simte · Tangkhul · Tarao · Thadou · Thangal · Vaiphei</p>
+        <p>Zeme · Zou · Aimol · Anal · Bengali · Chiru · Chothe · Gangte · Hmar · Inpui · Kharam</p>
+        <p>Koireng · Kom · Lamkang · Liangmai · Mao · Maram · Maring · Meiteilon · Mizo · Monsang</p>
+        <p>Moyon · Nepali · Paite · Poumai · Purum · Rongmei · Simte · Tangkhul · Tarao · Thadou</p>
+      </div>
+
       <div class="container hero-grid">
         <div class="hero-copy">
-          <p class="eyebrow">Imphal, Manipur &middot; Est. 2025</p>
-          <h1>
-            Manipuri for your
-            <span class="sr-only">documents, website, videos and campaigns</span>
-            <span class="typed-wrap" aria-hidden="true"><span class="typed" data-words='["documents", "website", "videos", "app", "campaigns", "podcasts"]'>documents</span><span class="caret"></span></span>
-          </h1>
-          <p class="lede">
-            EROL delivers accurate, culturally appropriate translation and localization between
-            Manipuri (Meiteilon), English and other languages, for businesses, government agencies
-            and content creators.
+          <p class="status"><span class="status-dot" aria-hidden="true"></span> Accepting new projects</p>
+          <p class="eyebrow eyebrow-light">All Manipur language services · Imphal</p>
+          <h1><em>Every language</em> of Manipur.</h1>
+          <p class="hero-lede">
+            EROL translates, transcribes, subtitles and voices your content in Meiteilon and the
+            tribal languages of Manipur, for government, NGOs, businesses, researchers and creators.
           </p>
           <div class="hero-actions">
-            <a class="btn" href="#contact">Request a quote</a>
-            <a class="btn btn-ghost" href="#services">Explore services</a>
+            <a class="btn btn-primary" href="#contact">Get a quote <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            <a class="btn btn-glass" href="#languages">Explore the language map</a>
           </div>
         </div>
 
-        <div class="hero-visual">
-          <div class="platen" aria-hidden="true"></div>
-          <figure class="sheet">
-            <p class="sheet-label">Language profile</p>
-            <p class="mayek" lang="mni-Mtei">&#xABC3;&#xABE9;&#xABC7;&#xABE9;&#xABC2;&#xABE3;&#xABDF;</p>
-            <figcaption class="sheet-caption">Meiteilon, the language of Manipur</figcaption>
-            <dl class="sheet-meta">
-              <div><dt>Scripts</dt><dd>Meetei Mayek &middot; Bengali</dd></div>
-              <div><dt>Pairs</dt><dd>Manipuri &#8644; English + more</dd></div>
-              <div><dt>Based in</dt><dd>Imphal, Manipur</dd></div>
-              <div><dt>Since</dt><dd>2025</dd></div>
-            </dl>
+        <div class="hero-side">
+          <figure class="hello-card" aria-labelledby="hello-label">
+            <span class="tape" aria-hidden="true"></span>
+            <p class="hello-label" id="hello-label">We work in</p>
+            <p class="hello-word" id="hello-word">Meiteilon</p>
+            <p class="hello-native" id="hello-native" lang="mni-Mtei">&#xABC3;&#xABE9;&#xABC7;&#xABE9;&#xABC2;&#xABE3;&#xABDF;</p>
+            <p class="hello-where" id="hello-where">Main language of the Imphal valley</p>
+            <div class="hello-foot">
+              <span class="hello-count" id="hello-count" aria-hidden="true">01 / 33</span>
+              <button class="hello-toggle" id="hello-toggle" type="button" aria-pressed="false">
+                <svg class="icon icon-pause" aria-hidden="true"><use href="#i-pause"/></svg>
+                <svg class="icon icon-play" aria-hidden="true"><use href="#i-play"/></svg>
+                <span class="sr-only">Pause the language slideshow</span>
+              </button>
+            </div>
           </figure>
+          <p class="hero-motto">Encoder · Reconstruct · Optimize · Language</p>
+        </div>
+      </div>
+
+      <a class="scroll-cue" href="#languages"><svg class="icon" aria-hidden="true"><use href="#i-down"/></svg> Scroll to explore</a>
+      <span class="scallop scallop-up" aria-hidden="true"></span>
+    </section>
+
+    <!-- Languages & map -->
+    <section class="section" id="languages" aria-labelledby="languages-title">
+      <div class="container">
+        <header class="section-head section-head-center reveal">
+          <p class="eyebrow">Languages of Manipur</p>
+          <h2 id="languages-title">One state, <em>many voices</em></h2>
+          <p class="section-lede">
+            We work in Meiteilon, the official language of Manipur, and in the languages of every hill
+            community. Select a district or a language to see where it is mainly spoken.
+          </p>
+        </header>
+
+        <ul class="stats reveal" aria-label="EROL at a glance">
+          <li><strong>33</strong><span>languages of Manipur</span></li>
+          <li><strong>16</strong><span>districts covered</span></li>
+          <li><strong>4</strong><span>scripts: Latin, Meetei Mayek, Bengali, Devanagari</span></li>
+          <li><strong>+2</strong><span>partner languages: English and Hindi</span></li>
+        </ul>
+
+        <div class="map-card reveal">
+          <div class="map-frame" id="map-frame">
+            <svg class="map" id="map" viewBox="0 0 520 599" role="img" aria-labelledby="map-title map-desc">
+              <title id="map-title">Map of Manipur's 16 districts</title>
+              <desc id="map-desc">Districts of Manipur coloured individually, with the main languages of each district listed beside the map. The EROL office is marked in Imphal.</desc>
+              <path class="district" id="d-bishnupur" data-district="Bishnupur" d="M234.6 308.1L242.7 306.4L253.0 312.3L262.9 306.7L264.9 318.4L268.3 319.7L264.9 330.0L261.8 332.1L254.5 329.3L252.2 323.7L244.3 326.7L243.0 331.6L247.3 337.4L244.9 345.1L253.2 347.4L251.5 352.4L257.7 355.8L258.1 358.8L263.8 351.4L260.5 361.4L266.4 363.9L259.3 368.0L259.8 373.0L263.0 374.0L267.2 379.6L264.3 382.8L266.6 385.9L254.0 405.5L256.8 409.1L254.4 410.8L258.0 420.4L257.4 428.3L261.3 428.3L257.8 431.9L261.4 434.7L258.6 436.5L258.6 441.2L261.7 441.3L262.2 447.7L259.5 442.6L257.9 443.4L256.9 442.8L257.8 441.2L253.9 441.1L253.6 437.5L256.4 437.2L253.3 434.3L256.8 433.2L254.3 432.1L254.0 425.7L249.2 426.5L249.1 430.0L246.9 426.9L245.9 432.0L245.4 425.8L237.4 426.9L240.0 422.3L233.9 420.4L235.2 417.0L237.4 420.6L238.0 418.2L239.3 421.2L244.9 421.3L246.7 416.4L238.4 413.1L243.5 403.9L238.1 404.6L239.6 408.3L235.6 408.8L235.6 413.3L227.9 411.2L225.3 414.7L221.9 409.3L219.2 412.9L214.1 413.9L213.9 406.1L223.1 387.1L223.8 362.7L221.8 359.8L225.6 347.9L224.4 346.9L224.4 345.1L225.1 342.8L226.5 342.7L228.7 324.9L234.1 321.4L234.6 308.1ZM262.8 448.9L265.9 451.2L263.2 454.1L264.1 451.5L262.8 448.9Z"/>
+              <path class="district" id="d-chandel" data-district="Chandel" d="M261.3 474.5L265.0 477.3L271.4 475.7L268.9 473.4L272.4 460.0L269.1 458.8L267.1 454.6L269.9 453.6L266.1 447.4L272.1 447.2L271.4 441.9L268.9 441.8L272.1 435.8L269.7 429.4L271.2 428.5L270.7 425.0L272.4 420.6L275.0 422.0L273.7 418.6L276.3 421.3L275.1 410.4L277.6 410.7L278.8 407.1L279.3 411.8L281.0 407.7L286.0 406.4L281.3 403.7L287.7 401.9L282.9 400.4L289.7 397.8L289.4 391.3L287.7 391.0L291.2 381.5L291.2 386.1L295.7 387.0L294.3 393.9L298.8 392.6L303.0 399.5L299.3 399.3L304.0 399.8L305.2 402.9L311.5 398.4L317.5 406.1L329.0 407.6L332.6 414.7L343.0 419.4L344.6 445.2L358.7 456.0L361.2 462.8L356.9 498.0L373.0 504.2L373.6 514.2L369.3 523.5L365.9 522.3L368.7 529.1L354.6 552.9L355.0 561.2L349.3 562.8L345.5 588.1L342.1 587.6L341.9 592.1L339.0 593.0L334.0 591.2L328.2 575.1L314.6 575.7L312.2 568.4L305.4 563.3L293.5 564.1L284.6 557.3L270.1 555.0L260.2 561.7L245.5 563.3L235.2 549.9L231.5 539.1L226.3 538.2L236.3 508.7L237.6 496.9L253.6 481.5L257.8 472.7L260.8 475.0L261.3 474.5Z"/>
+              <path class="district" id="d-churachandpur" data-district="Churachandpur" d="M261.3 474.5L260.8 475.0L257.8 472.7L253.6 481.5L237.6 496.9L236.3 508.7L226.2 537.9L226.5 541.1L192.7 536.6L188.4 549.1L183.4 552.6L174.3 545.9L171.6 553.0L158.7 558.4L146.2 547.7L146.8 542.2L138.0 532.5L133.2 517.6L122.0 512.3L127.1 481.8L151.0 461.5L154.7 424.7L118.6 419.1L114.2 413.7L117.4 399.0L124.0 393.3L126.3 383.0L131.0 378.8L124.0 373.4L125.1 360.8L128.0 358.6L142.5 369.5L148.8 358.9L154.2 364.9L160.6 361.5L166.2 364.4L168.5 358.2L176.7 353.0L184.6 361.4L193.9 348.6L199.9 353.1L203.6 348.2L213.9 346.6L218.8 348.9L221.0 344.1L224.4 345.1L224.4 346.9L225.6 347.9L221.8 359.8L223.8 362.7L223.1 387.1L213.9 406.1L214.1 413.9L219.2 412.9L221.9 409.3L225.3 414.7L227.9 411.2L235.6 413.3L235.6 408.8L239.6 408.3L238.1 404.6L243.5 403.9L238.4 413.1L246.7 416.4L244.9 421.3L239.3 421.2L238.0 418.2L237.4 420.6L235.2 417.0L233.9 420.4L240.0 422.3L237.4 426.9L245.4 425.8L245.9 432.0L246.9 426.9L249.1 430.0L249.2 426.5L254.0 425.7L254.3 432.1L256.8 433.2L253.3 434.3L256.4 437.2L253.6 437.5L253.9 441.1L257.8 441.2L256.9 442.8L257.9 443.4L259.5 442.6L264.1 451.5L260.0 466.3L266.0 469.3L261.3 474.5Z"/>
+              <path class="district" id="d-imphal-east" data-district="Imphal East" d="M283.6 312.9L281.4 303.1L284.7 287.6L281.4 284.8L285.2 277.8L277.4 271.3L278.6 269.1L271.6 269.0L277.4 262.3L273.5 261.8L271.0 253.5L276.3 252.6L275.3 256.0L286.2 256.6L289.4 251.4L285.4 250.0L290.0 247.7L286.8 244.0L291.6 244.1L294.0 251.3L296.3 248.2L295.3 241.1L287.3 239.8L287.2 235.5L298.1 238.9L295.4 234.1L299.2 234.3L300.9 240.0L304.5 238.2L306.5 224.9L299.9 226.2L306.2 223.0L305.3 210.2L308.2 207.5L308.6 217.0L314.3 220.1L309.2 220.7L309.0 224.5L312.2 222.9L314.9 226.0L310.1 226.7L309.5 228.9L314.0 230.1L309.2 232.0L308.6 235.8L312.6 234.0L312.0 239.4L316.6 240.1L313.5 242.4L317.5 244.4L316.7 262.0L324.9 260.2L326.3 255.6L335.0 249.7L335.4 244.8L339.2 249.9L331.1 262.8L329.5 270.9L325.2 272.2L329.1 280.2L325.2 281.5L320.1 304.9L316.3 306.4L317.7 310.3L314.9 312.4L318.0 312.9L315.7 321.1L319.3 317.3L323.4 322.3L310.0 329.0L307.8 327.1L303.6 334.6L301.1 323.4L293.1 329.9L288.5 328.5L287.1 324.1L289.8 321.4L285.0 316.0L283.6 312.9Z"/>
+              <path class="district" id="d-imphal-west" data-district="Imphal West" d="M277.6 236.2L281.1 234.6L276.3 252.6L271.0 253.5L273.5 261.8L277.4 262.3L271.6 269.0L278.6 269.1L277.4 271.3L285.2 277.8L281.4 284.8L284.7 287.6L281.4 303.1L283.7 312.8L273.2 319.3L273.3 327.1L281.3 330.3L281.9 335.3L279.4 334.0L268.7 345.7L275.2 347.0L273.3 353.5L275.2 359.0L272.1 365.2L275.5 364.9L263.9 366.2L263.0 374.0L259.8 373.0L259.3 368.0L266.4 363.9L260.5 361.4L263.8 351.4L258.1 358.8L257.7 355.8L251.5 352.4L253.2 347.4L244.9 345.1L247.3 337.4L243.0 331.6L244.3 326.7L252.2 323.7L254.5 329.3L261.8 332.1L264.9 330.0L268.3 319.7L264.9 318.4L262.9 306.7L253.0 312.3L242.7 306.4L234.6 308.1L241.2 298.5L238.0 286.1L245.7 276.2L245.2 267.0L256.4 246.7L256.9 238.8L261.4 236.9L265.6 228.6L268.0 229.2L276.0 233.6L268.0 243.5L274.3 246.8L277.6 236.2Z"/>
+              <path class="district" id="d-jiribam" data-district="Jiribam" d="M64.4 289.2L80.4 302.5L77.5 312.2L71.3 317.9L75.8 319.3L73.7 322.7L72.4 327.2L76.5 328.1L73.4 331.1L77.4 338.4L73.9 342.1L76.1 352.7L71.9 355.1L72.7 360.5L68.4 360.2L70.2 362.2L64.6 370.9L49.0 365.2L38.9 359.5L43.6 355.4L34.2 350.8L37.9 346.5L35.5 343.0L38.7 341.4L37.6 334.9L41.1 334.0L43.6 326.9L39.6 326.2L34.9 316.7L38.6 316.1L44.6 306.1L41.9 304.4L42.5 294.1L45.1 284.0L48.6 281.5L47.7 285.0L53.4 284.4L56.4 291.5L63.4 286.9L64.4 289.2Z"/>
+              <path class="district" id="d-kakching" data-district="Kakching" d="M263.0 374.0L263.9 366.2L275.5 364.9L278.1 358.0L287.6 357.7L289.2 364.8L305.4 369.3L307.2 376.1L306.5 376.4L306.7 378.8L304.4 379.7L306.4 385.0L304.7 388.5L306.7 396.6L314.3 394.5L311.5 398.4L305.2 402.9L304.0 399.8L299.3 399.3L303.0 399.5L298.8 392.6L294.3 393.9L295.7 387.0L291.2 386.1L291.2 381.5L287.7 391.0L289.4 391.3L289.7 397.8L282.9 400.4L287.7 401.9L281.3 403.7L286.0 406.4L281.0 407.7L279.3 411.8L278.8 407.1L277.6 410.7L275.1 410.4L276.3 421.3L273.7 418.6L275.0 422.0L272.4 420.6L270.7 425.0L271.2 428.5L269.7 429.4L272.1 435.8L268.9 441.8L271.4 441.9L272.1 447.2L266.1 447.4L269.9 453.6L267.1 454.6L269.1 458.8L272.4 460.0L268.9 473.4L271.4 475.7L265.0 477.3L261.3 474.5L266.0 469.3L260.0 466.3L263.2 454.1L265.9 451.2L262.2 447.8L261.7 441.3L258.6 441.2L258.6 436.5L261.4 434.7L257.8 431.9L261.3 428.3L257.4 428.3L258.0 420.4L254.4 410.8L256.8 409.1L254.0 405.5L266.6 385.9L264.3 382.8L267.2 379.6L263.0 374.0Z"/>
+              <path class="district" id="d-kamjong" data-district="Kamjong" d="M408.6 378.3L404.2 376.4L407.5 367.2L395.5 366.8L396.2 361.7L389.7 359.9L381.5 350.5L376.5 352.1L371.7 345.2L361.3 345.7L350.0 340.6L358.0 342.7L357.1 333.4L353.0 328.1L354.4 314.2L350.0 308.5L352.0 297.9L346.7 289.2L338.7 286.7L342.7 278.2L340.5 265.4L345.4 261.1L348.5 247.4L355.7 242.4L364.2 242.8L382.1 236.7L396.0 228.8L414.0 228.8L430.8 218.9L452.7 213.7L475.9 192.1L488.1 187.9L511.8 188.7L514.0 212.7L509.1 224.3L500.3 234.5L505.3 245.0L501.9 246.6L497.8 259.3L489.0 265.0L481.7 275.3L477.8 293.7L480.8 301.5L470.9 316.2L466.6 316.4L465.8 311.2L464.3 317.3L457.0 315.8L453.9 337.2L443.0 353.7L431.0 361.5L422.8 388.1L408.1 384.1L408.6 378.3Z"/>
+              <path class="district" id="d-kangpokpi" data-district="Kangpokpi" d="M348.5 247.4L345.4 261.1L340.5 265.4L342.7 278.2L338.7 286.7L346.7 289.2L352.0 297.9L350.0 308.5L354.4 314.2L353.0 328.1L357.1 333.4L358.0 342.7L348.8 340.3L339.3 345.7L332.0 340.4L327.8 329.0L333.6 326.4L334.4 322.6L341.2 322.4L334.2 319.2L337.2 309.6L333.9 316.1L328.7 314.3L330.3 316.0L326.5 321.7L323.6 322.6L319.3 317.3L315.7 321.1L318.0 312.9L314.9 312.4L317.7 310.3L316.3 306.4L320.1 304.9L325.2 281.5L329.1 280.2L325.2 272.2L329.5 270.9L331.1 262.8L339.2 249.9L335.4 244.8L335.0 249.7L326.3 255.6L324.9 260.2L316.7 262.0L317.5 244.4L313.5 242.4L316.6 240.1L312.0 239.4L312.6 234.0L308.6 235.8L309.2 232.0L314.0 230.1L309.5 228.9L310.1 226.7L314.9 226.0L312.2 222.9L309.0 224.5L309.2 220.7L314.3 220.1L308.6 217.0L308.2 207.5L305.3 210.2L306.2 223.0L299.9 226.2L306.5 224.9L304.5 238.2L300.9 240.0L299.2 234.3L295.4 234.1L298.1 238.9L287.2 235.5L287.3 239.8L295.3 241.1L296.3 248.2L294.0 251.3L291.6 244.1L286.8 244.0L290.0 247.7L285.4 250.0L289.4 251.4L286.2 256.6L275.3 256.0L281.1 234.6L277.6 236.2L274.3 246.8L268.0 243.5L276.0 233.6L268.0 229.2L265.6 228.6L261.4 236.9L256.9 238.8L256.4 246.7L245.2 267.0L245.7 276.2L238.0 286.1L241.2 298.5L234.6 308.1L234.1 321.4L228.7 324.9L226.5 342.7L222.9 343.1L216.9 336.6L223.9 330.6L221.4 321.7L225.6 317.8L222.1 304.3L227.1 298.7L228.6 290.4L231.1 290.1L227.1 285.0L235.2 272.0L231.4 253.6L243.1 237.9L240.5 219.2L248.1 217.0L242.2 198.4L242.3 192.5L235.4 175.8L241.1 171.5L250.7 154.2L258.6 152.1L272.7 138.4L279.4 138.9L287.9 134.0L277.4 120.9L268.4 118.5L272.9 107.3L275.8 102.9L278.4 101.5L278.0 99.5L289.2 100.8L297.1 106.0L298.2 114.7L292.2 132.0L305.5 144.4L299.9 163.7L321.5 170.6L356.0 165.5L362.0 169.1L352.1 171.4L346.7 179.4L347.8 182.4L343.4 182.0L338.4 187.0L334.3 202.3L343.2 213.3L342.2 224.9L349.8 244.1L348.5 247.4Z"/>
+              <path class="district" id="d-noney" data-district="Noney" d="M75.8 319.3L86.2 332.1L93.8 332.1L100.9 322.2L111.0 315.2L108.4 310.9L111.3 303.1L117.9 300.7L120.4 284.7L128.2 285.5L130.6 279.7L156.5 280.2L169.7 284.7L174.6 284.1L179.1 276.3L195.8 287.2L231.1 290.0L228.6 290.4L227.1 298.7L222.1 304.3L225.6 317.8L221.4 321.7L223.9 330.6L216.9 336.6L222.9 343.1L225.1 342.8L224.4 345.2L221.0 344.1L218.8 348.9L213.9 346.6L203.6 348.2L199.9 353.1L193.9 348.6L184.6 361.4L176.7 353.0L168.5 358.2L166.2 364.4L160.6 361.5L154.2 364.9L148.8 358.9L142.5 369.5L128.0 358.6L125.0 360.8L112.6 357.6L109.4 360.7L94.4 360.9L88.1 374.0L89.6 378.5L81.2 377.6L76.9 383.9L68.7 374.6L65.8 377.7L63.0 376.3L64.6 370.9L70.2 362.2L68.4 360.2L72.7 360.5L71.9 355.1L76.1 352.7L73.9 342.1L77.4 338.4L73.4 331.1L76.5 328.1L72.4 327.2L73.7 322.7L75.8 319.3Z"/>
+              <path class="district" id="d-pherzawl" data-district="Pherzawl" d="M125.1 360.8L124.0 373.4L131.0 378.8L126.3 383.0L124.0 393.3L117.4 399.0L114.2 413.7L118.6 419.1L154.7 424.7L151.0 461.5L127.1 481.8L122.0 512.3L112.0 507.7L115.4 511.5L108.7 513.2L109.1 523.2L96.0 523.6L86.4 533.5L89.3 521.8L85.3 514.9L77.0 513.9L77.0 521.0L73.9 525.0L61.8 524.0L61.3 516.9L54.1 512.5L50.0 520.6L42.2 526.6L41.8 517.0L36.3 508.1L27.2 511.8L11.2 503.7L6.0 504.6L11.0 496.9L10.4 493.1L15.6 489.2L13.7 478.1L17.9 477.3L20.1 471.4L18.4 469.3L20.6 466.3L15.0 458.9L17.3 454.6L15.7 450.9L25.4 432.2L18.8 429.7L21.0 416.6L16.3 410.0L20.9 411.6L26.1 408.5L23.1 404.7L27.1 390.7L23.0 383.8L28.2 376.1L28.2 368.3L34.0 364.0L30.6 358.8L38.9 359.5L49.0 365.2L64.6 370.9L63.0 376.3L65.8 377.7L68.7 374.6L76.9 383.9L81.2 377.6L89.6 378.5L88.1 374.0L94.4 360.9L109.4 360.7L112.6 357.6L125.1 360.8Z"/>
+              <path class="district" id="d-senapati" data-district="Senapati" d="M434.7 40.6L432.6 50.9L419.2 74.2L421.5 77.2L418.5 78.3L413.5 90.7L410.5 90.8L412.4 91.7L409.4 95.6L408.9 111.6L396.8 126.5L393.8 136.2L383.5 148.0L373.1 152.1L371.2 160.1L364.1 163.2L362.0 169.1L356.0 165.5L321.5 170.6L299.9 163.7L305.5 144.4L292.2 132.0L298.2 114.7L297.1 106.0L289.2 100.8L278.0 99.5L277.0 97.3L269.7 90.9L252.8 89.4L249.1 78.9L244.7 78.0L246.1 71.6L243.5 67.7L239.4 65.4L233.6 68.5L231.3 65.2L233.2 54.3L247.9 53.9L253.1 47.4L260.8 49.6L268.7 45.9L289.2 50.5L295.7 44.9L302.7 45.3L301.2 39.2L304.3 37.3L311.5 44.5L314.4 42.6L319.9 50.0L324.8 49.2L327.6 54.7L324.8 57.0L331.6 59.6L340.9 60.4L345.4 50.3L347.8 53.4L351.7 50.5L355.7 51.1L354.1 58.9L363.3 69.1L382.2 64.0L392.8 65.5L411.1 56.3L420.1 54.9L422.5 39.1L438.3 30.1L440.8 33.4L434.7 40.6Z"/>
+              <path class="district" id="d-tamenglong" data-district="Tamenglong" d="M268.4 118.5L277.4 120.9L287.9 134.0L279.4 138.9L272.7 138.4L258.6 152.1L250.7 154.2L241.1 171.5L235.4 175.8L242.3 192.5L242.2 198.4L248.1 217.0L240.5 219.2L243.1 237.9L231.4 253.6L235.2 272.0L227.1 285.0L231.0 290.0L195.8 287.2L179.1 276.3L174.6 284.1L169.7 284.7L156.5 280.2L130.6 279.7L128.2 285.5L120.4 284.7L117.9 300.7L111.3 303.1L108.4 310.9L111.0 315.2L100.9 322.2L93.8 332.1L86.2 332.1L75.8 319.3L71.3 317.9L77.5 312.2L80.4 302.5L64.2 289.4L70.2 284.0L69.7 270.5L72.4 271.5L78.7 264.5L77.3 261.8L80.5 260.8L78.6 258.5L82.8 254.9L81.2 252.4L85.2 251.3L81.6 244.2L85.8 243.1L84.1 239.9L89.2 236.6L85.3 231.6L88.2 223.8L83.9 225.0L83.6 218.6L86.6 217.9L89.5 208.8L99.8 209.9L104.1 197.6L109.1 194.8L112.8 185.5L112.9 170.7L123.3 154.0L123.1 148.7L136.4 134.9L148.6 128.3L144.0 121.8L149.2 128.6L149.2 138.7L159.0 139.4L157.6 147.8L173.2 146.8L181.3 154.4L182.5 160.9L187.4 161.5L205.2 126.3L204.5 121.5L209.2 120.6L210.8 110.7L217.2 111.6L226.6 96.9L235.8 91.9L244.8 78.2L249.1 78.9L252.8 89.4L269.7 90.9L277.0 97.3L278.4 101.5L275.8 102.9L272.9 107.3L268.4 118.5Z"/>
+              <path class="district" id="d-tengnoupal" data-district="Tengnoupal" d="M350.0 340.6L361.3 345.7L371.7 345.2L376.5 352.1L381.5 350.5L389.7 359.9L396.2 361.7L395.5 366.8L407.5 367.2L404.2 376.4L408.6 378.3L408.1 384.2L417.1 387.5L414.8 387.8L414.4 396.6L417.3 402.2L413.8 410.9L404.1 415.7L409.1 420.3L401.1 434.4L392.9 436.4L392.9 453.0L388.6 463.9L384.2 466.7L379.8 485.5L375.1 488.1L373.0 504.2L356.9 498.0L361.2 462.8L358.7 456.0L344.6 445.2L343.0 419.4L332.6 414.7L329.0 407.6L317.5 406.1L311.5 398.4L314.3 394.5L306.7 396.6L304.7 388.5L306.4 385.0L304.4 379.7L306.7 378.8L306.5 376.4L310.7 375.0L310.2 365.8L313.4 373.5L316.7 370.1L318.9 373.3L317.0 374.7L319.8 374.1L321.9 377.4L325.7 376.0L322.4 375.2L320.1 369.7L320.0 362.0L322.9 368.6L325.5 360.3L336.4 369.7L330.7 362.0L333.3 361.9L331.1 361.0L332.6 358.8L329.0 360.9L330.2 357.8L327.1 355.9L326.0 352.2L329.1 350.8L325.8 350.8L328.2 347.3L332.8 346.8L336.2 344.7L335.0 342.5L339.3 345.7L348.8 340.3L350.0 340.6Z"/>
+              <path class="district" id="d-thoubal" data-district="Thoubal" d="M275.5 364.9L272.1 365.2L275.2 359.0L273.3 353.5L275.2 347.0L268.7 345.7L279.4 334.0L281.9 335.2L281.3 330.3L273.3 327.1L273.2 319.3L284.0 312.7L285.0 316.0L289.8 321.4L287.1 324.1L288.5 328.5L293.1 329.9L301.1 323.4L303.6 334.6L307.8 327.1L310.0 329.0L323.4 322.3L326.5 321.7L330.3 316.0L328.7 314.3L333.9 316.1L337.2 309.6L334.2 319.2L341.2 322.4L334.4 322.6L333.6 326.4L327.8 329.0L332.0 340.4L335.0 342.5L336.2 344.7L332.8 346.8L328.2 347.3L325.8 350.8L329.1 350.8L326.0 352.2L327.1 355.9L330.2 357.8L329.0 360.9L332.6 358.8L331.1 361.0L333.3 361.9L330.7 362.0L336.4 369.7L325.5 360.3L322.9 368.6L320.0 362.0L320.1 369.7L322.4 375.2L325.7 376.0L321.9 377.4L319.8 374.1L317.0 374.7L318.9 373.3L316.7 370.1L313.4 373.5L310.2 365.8L310.7 375.0L307.2 376.1L305.4 369.3L289.2 364.8L287.6 357.7L278.1 358.0L275.5 364.9Z"/>
+              <path class="district" id="d-ukhrul" data-district="Ukhrul" d="M488.1 187.9L475.9 192.1L452.7 213.7L430.8 218.9L414.0 228.8L396.0 228.8L382.1 236.7L364.2 242.8L355.7 242.4L348.5 247.4L349.8 244.1L342.2 224.9L343.2 213.3L334.3 202.4L338.4 187.0L343.4 182.0L347.8 182.4L346.7 179.4L352.1 171.4L362.0 169.1L364.1 163.2L371.2 160.1L373.1 152.1L383.5 148.0L393.8 136.2L396.8 126.5L408.9 111.6L409.4 95.6L412.4 91.7L410.5 90.8L413.5 90.7L418.5 78.3L421.5 77.2L419.2 74.2L432.6 50.9L434.7 40.6L449.9 22.7L456.5 19.1L464.9 6.0L471.6 9.0L467.0 13.1L468.7 14.8L464.9 22.9L470.8 23.6L468.0 24.0L458.5 41.4L462.4 46.4L460.1 49.2L463.1 51.4L459.4 65.7L466.0 67.8L477.2 78.4L494.3 83.8L489.9 96.3L482.6 99.5L482.5 112.0L468.5 140.2L468.6 152.0L465.7 156.9L474.3 167.1L478.4 165.5L484.2 171.9L495.7 177.4L498.5 174.6L505.5 180.8L511.7 181.7L512.6 187.6L488.1 187.9Z"/>
+              <g class="office" transform="translate(282.5 282.2)">
+                <circle r="5"/>
+                <text x="-9" y="-8" text-anchor="end">EROL · Imphal</text>
+              </g>
+            </svg>
+            <svg class="map-leaders" viewBox="0 0 1100 700" aria-hidden="true" focusable="false">
+              <polyline class="leader" data-group="tamenglong" points="248,62.0 266,62.0 457.6,253.4"/>
+              <circle class="pin" data-group="tamenglong" cx="457.6" cy="253.4" r="5.5"/>
+              <polyline class="leader" data-group="noney" points="248,206.0 266,206.0 434.3,378.1"/>
+              <circle class="pin" data-group="noney" cx="434.3" cy="378.1" r="5.5"/>
+              <polyline class="leader" data-group="jiribam" points="248,350.0 266,350.0 333.4,379.8"/>
+              <circle class="pin" data-group="jiribam" cx="333.4" cy="379.8" r="5.5"/>
+              <polyline class="leader" data-group="pherzawl" points="248,494.0 266,494.0 355.0,504.9"/>
+              <circle class="pin" data-group="pherzawl" cx="355.0" cy="504.9" r="5.5"/>
+              <polyline class="leader" data-group="churachandpur" points="248,638.0 266,638.0 471.7,512.8"/>
+              <circle class="pin" data-group="churachandpur" cx="471.7" cy="512.8" r="5.5"/>
+              <polyline class="leader" data-group="senapati" points="852,62.0 834,62.0 632.4,135.4"/>
+              <circle class="pin" data-group="senapati" cx="632.4" cy="135.4" r="5.5"/>
+              <polyline class="leader" data-group="ukhrul" points="852,158.0 834,158.0 724.2,191.8"/>
+              <circle class="pin" data-group="ukhrul" cx="724.2" cy="191.8" r="5.5"/>
+              <polyline class="leader" data-group="kangpokpi" points="852,254.0 834,254.0 585.6,263.4"/>
+              <circle class="pin" data-group="kangpokpi" cx="585.6" cy="263.4" r="5.5"/>
+              <polyline class="leader" data-group="kamjong" points="852,350.0 834,350.0 725.9,329.7"/>
+              <circle class="pin" data-group="kamjong" cx="725.9" cy="329.7" r="5.5"/>
+              <polyline class="leader" data-group="valley" points="852,446.0 834,446.0 566.7,386.4"/>
+              <circle class="pin" data-group="valley" cx="566.7" cy="386.4" r="5.5"/>
+              <polyline class="leader" data-group="tengnoupal" points="852,542.0 834,542.0 662.1,463.1"/>
+              <circle class="pin" data-group="tengnoupal" cx="662.1" cy="463.1" r="5.5"/>
+              <polyline class="leader" data-group="chandel" points="852,638.0 834,638.0 597.9,560.0"/>
+              <circle class="pin" data-group="chandel" cx="597.9" cy="560.0" r="5.5"/>
+            </svg>
+
+            <ul class="callouts" aria-label="Main languages by district">
+              <li class="callout" data-group="tamenglong"><button type="button" class="callout-btn" data-group="tamenglong"><span class="callout-pill">Tamenglong</span><span class="callout-langs">Rongmei · Liangmai · Zeme · Inpui</span></button></li>
+              <li class="callout" data-group="noney"><button type="button" class="callout-btn" data-group="noney"><span class="callout-pill">Noney</span><span class="callout-langs">Rongmei · Inpui</span></button></li>
+              <li class="callout" data-group="jiribam"><button type="button" class="callout-btn" data-group="jiribam"><span class="callout-pill">Jiribam</span><span class="callout-langs">Meiteilon · Bengali · Hmar</span></button></li>
+              <li class="callout" data-group="pherzawl"><button type="button" class="callout-btn" data-group="pherzawl"><span class="callout-pill">Pherzawl</span><span class="callout-langs">Hmar · Thadou</span></button></li>
+              <li class="callout" data-group="churachandpur"><button type="button" class="callout-btn" data-group="churachandpur"><span class="callout-pill">Churachandpur</span><span class="callout-langs">Paite · Thadou · Hmar · Vaiphei · Zou · Gangte</span></button></li>
+              <li class="callout" data-group="senapati"><button type="button" class="callout-btn" data-group="senapati"><span class="callout-pill">Senapati</span><span class="callout-langs">Mao · Poumai</span></button></li>
+              <li class="callout" data-group="ukhrul"><button type="button" class="callout-btn" data-group="ukhrul"><span class="callout-pill">Ukhrul</span><span class="callout-langs">Tangkhul</span></button></li>
+              <li class="callout" data-group="kangpokpi"><button type="button" class="callout-btn" data-group="kangpokpi"><span class="callout-pill">Kangpokpi</span><span class="callout-langs">Thadou · Nepali</span></button></li>
+              <li class="callout" data-group="kamjong"><button type="button" class="callout-btn" data-group="kamjong"><span class="callout-pill">Kamjong</span><span class="callout-langs">Tangkhul</span></button></li>
+              <li class="callout" data-group="valley"><button type="button" class="callout-btn" data-group="valley"><span class="callout-pill">Imphal valley</span><span class="callout-langs">Meiteilon · Rongmei</span><span class="callout-note">Imphal West, Imphal East, Thoubal, Bishnupur, Kakching</span></button></li>
+              <li class="callout" data-group="tengnoupal"><button type="button" class="callout-btn" data-group="tengnoupal"><span class="callout-pill">Tengnoupal</span><span class="callout-langs">Maring · Thadou · Gangte</span></button></li>
+              <li class="callout" data-group="chandel"><button type="button" class="callout-btn" data-group="chandel"><span class="callout-pill">Chandel</span><span class="callout-langs">Thadou · Anal · Lamkang</span></button></li>
+            </ul>
+          </div>
+
+          <div class="map-info" id="map-info" aria-live="polite">
+            <div class="map-info-body">
+              <p class="map-info-title" id="map-info-title">Explore the map</p>
+              <p class="map-info-text" id="map-info-main">Select a district on the map, or any language below, to see where it is spoken.</p>
+              <p class="map-info-text map-info-also" id="map-info-also" hidden></p>
+            </div>
+            <div class="map-info-actions">
+              <a class="btn btn-primary btn-sm" id="map-info-cta" href="#contact" hidden>Get a quote</a>
+              <button class="btn btn-outline btn-sm" id="map-info-clear" type="button" hidden>
+                <svg class="icon" aria-hidden="true"><use href="#i-close"/></svg> Clear
+              </button>
+            </div>
+          </div>
+
+          <p class="map-source">
+            Main languages per district follow the language table in
+            <a href="https://en.wikipedia.org/wiki/List_of_districts_of_Manipur" target="_blank" rel="noopener">Wikipedia's List of districts of Manipur</a>.
+            Every district is home to speakers of many languages. The map is illustrative and boundaries are approximate.
+          </p>
+        </div>
+
+        <div class="lang-card reveal" id="all-languages">
+          <div class="lang-card-head">
+            <div>
+              <h3>All 33 languages we work in</h3>
+              <p class="lang-card-sub">Listed alphabetically. Every language gets the same care, and English and Hindi are available as partner languages.</p>
+            </div>
+            <label class="search">
+              <svg class="icon" aria-hidden="true"><use href="#i-search"/></svg>
+              <span class="sr-only">Search languages</span>
+              <input type="search" id="lang-search" placeholder="Search a language" autocomplete="off" aria-controls="lang-chips" aria-describedby="lang-count">
+            </label>
+          </div>
+
+          <p class="lang-count" id="lang-count" aria-live="polite">Showing all 33 languages</p>
+          <ul class="chips" id="lang-chips">
+            <li><button type="button" class="chip" data-lang="Aimol" aria-pressed="false">Aimol</button></li>
+            <li><button type="button" class="chip" data-lang="Anal" aria-pressed="false">Anal</button></li>
+            <li><button type="button" class="chip" data-lang="Bengali" aria-pressed="false">Bengali</button></li>
+            <li><button type="button" class="chip" data-lang="Chiru" aria-pressed="false">Chiru</button></li>
+            <li><button type="button" class="chip" data-lang="Chothe" aria-pressed="false">Chothe</button></li>
+            <li><button type="button" class="chip" data-lang="Gangte" aria-pressed="false">Gangte</button></li>
+            <li><button type="button" class="chip" data-lang="Hmar" aria-pressed="false">Hmar</button></li>
+            <li><button type="button" class="chip" data-lang="Inpui" data-aliases="Kabui" aria-pressed="false">Inpui</button></li>
+            <li><button type="button" class="chip" data-lang="Kharam" aria-pressed="false">Kharam</button></li>
+            <li><button type="button" class="chip" data-lang="Koireng" aria-pressed="false">Koireng</button></li>
+            <li><button type="button" class="chip" data-lang="Kom" aria-pressed="false">Kom</button></li>
+            <li><button type="button" class="chip" data-lang="Lamkang" data-aliases="Lamgang" aria-pressed="false">Lamkang</button></li>
+            <li><button type="button" class="chip" data-lang="Liangmai" data-aliases="Liangmei" aria-pressed="false">Liangmai</button></li>
+            <li><button type="button" class="chip" data-lang="Mao" aria-pressed="false">Mao</button></li>
+            <li><button type="button" class="chip" data-lang="Maram" aria-pressed="false">Maram</button></li>
+            <li><button type="button" class="chip" data-lang="Maring" aria-pressed="false">Maring</button></li>
+            <li><button type="button" class="chip" data-lang="Meiteilon" data-aliases="Manipuri Meitei Meetei" aria-pressed="false">Meiteilon (Manipuri)</button></li>
+            <li><button type="button" class="chip" data-lang="Mizo" data-aliases="Lushai" aria-pressed="false">Mizo</button></li>
+            <li><button type="button" class="chip" data-lang="Monsang" aria-pressed="false">Monsang</button></li>
+            <li><button type="button" class="chip" data-lang="Moyon" aria-pressed="false">Moyon</button></li>
+            <li><button type="button" class="chip" data-lang="Nepali" aria-pressed="false">Nepali</button></li>
+            <li><button type="button" class="chip" data-lang="Paite" aria-pressed="false">Paite</button></li>
+            <li><button type="button" class="chip" data-lang="Poumai" data-aliases="Poula" aria-pressed="false">Poumai</button></li>
+            <li><button type="button" class="chip" data-lang="Purum" aria-pressed="false">Purum</button></li>
+            <li><button type="button" class="chip" data-lang="Rongmei" data-aliases="Kabui Ruangmei" aria-pressed="false">Rongmei</button></li>
+            <li><button type="button" class="chip" data-lang="Simte" aria-pressed="false">Simte</button></li>
+            <li><button type="button" class="chip" data-lang="Tangkhul" aria-pressed="false">Tangkhul</button></li>
+            <li><button type="button" class="chip" data-lang="Tarao" aria-pressed="false">Tarao</button></li>
+            <li><button type="button" class="chip" data-lang="Thadou" aria-pressed="false">Thadou</button></li>
+            <li><button type="button" class="chip" data-lang="Thangal" data-aliases="Koirao" aria-pressed="false">Thangal</button></li>
+            <li><button type="button" class="chip" data-lang="Vaiphei" aria-pressed="false">Vaiphei</button></li>
+            <li><button type="button" class="chip" data-lang="Zeme" data-aliases="Zemei" aria-pressed="false">Zeme</button></li>
+            <li><button type="button" class="chip" data-lang="Zou" aria-pressed="false">Zou</button></li>
+          </ul>
+          <p class="lang-empty" id="lang-empty" hidden>No match in our list, but we may still be able to help. <a href="#contact">Ask us</a>.</p>
+          <p class="lang-foot">Don't see your language, or does your community use a different name? <a href="#contact">Tell us</a>.</p>
         </div>
       </div>
     </section>
-
-    <div class="ticker" aria-hidden="true">
-      <div class="container ticker-inner">
-        <span>Translation</span><span>Transcription</span><span>Subtitling</span><span>Proofreading</span><span>Editing</span><span>Cultural consulting</span><span>Voiceover</span><span>Localization</span>
-      </div>
-    </div>
 
     <!-- Services -->
-    <section class="section" id="services">
+    <section class="section section-soft" id="services" aria-labelledby="services-title">
+      <span class="scallop scallop-down" aria-hidden="true"></span>
       <div class="container">
         <header class="section-head reveal">
-          <p class="eyebrow"><span class="eyebrow-num">01</span> Services</p>
-          <h2>Everything your words need to be understood in Manipur</h2>
-          <p class="section-lede">From a single certificate to a full film, we help you reach Manipuri-speaking audiences with clarity and authenticity.</p>
+          <p class="eyebrow">What we do</p>
+          <h2 id="services-title">Services that help you <em>be understood</em></h2>
+          <p class="section-lede">From a one-page notice to a full documentary, every project is handled by linguists who speak the language natively.</p>
         </header>
 
-        <div class="service-grid">
-          <article class="service reveal">
-            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h12M12 3l4 4-4 4"/><path d="M20 17H8m4-4-4 4 4 4"/></svg>
+        <ol class="services">
+          <li class="service card reveal">
+            <span class="service-num">01</span>
+            <svg class="service-icon" aria-hidden="true"><use href="#i-swap"/></svg>
             <h3>Translation</h3>
-            <p>Manipuri &#8644; English and other languages. Documents, reports, forms, websites and marketing copy, written to read naturally.</p>
-          </article>
-
-          <article class="service reveal">
-            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M7 11h10M7 14h4m2 0h4"/></svg>
-            <h3>Transcription &amp; Subtitling</h3>
-            <p>Accurate Manipuri transcripts and time-coded subtitles for films, interviews, lectures and online video.</p>
-          </article>
-
-          <article class="service reveal">
-            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16v4z"/><path d="M13 7l4 4"/></svg>
-            <h3>Proofreading &amp; Editing</h3>
-            <p>A careful review of existing Manipuri text for accuracy, grammar, tone and consistency before it goes public.</p>
-          </article>
-
-          <article class="service reveal">
-            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5 5-2z"/></svg>
-            <h3>Cultural Consulting</h3>
-            <p>Guidance on idiom, tradition and sensitivities, so your message lands the way you intend with audiences in Manipur.</p>
-          </article>
-
-          <article class="service reveal">
-            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3M8 21h8"/></svg>
-            <h3>Voiceover</h3>
-            <p>Natural Manipuri voiceover for videos, advertisements, e-learning courses and public announcements.</p>
-          </article>
-
-          <article class="service reveal">
-            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
-            <h3>Content Localization</h3>
-            <p>Adapting apps, websites and campaigns for Manipuri speakers, including references, formats and script, not just the words.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- Audiences -->
-    <section class="section section-alt" aria-labelledby="audience-title">
-      <div class="container">
-        <header class="section-head reveal">
-          <p class="eyebrow"><span class="eyebrow-num">02</span> Who we work with</p>
-          <h2 id="audience-title">Breaking the language barrier for</h2>
-        </header>
-
-        <div class="audience-grid">
-          <div class="audience reveal">
-            <p class="audience-tag">Businesses</p>
-            <p>Reach customers across Manipur in the language they think in, from product information to customer support.</p>
-          </div>
-          <div class="audience reveal">
-            <p class="audience-tag">Government agencies</p>
-            <p>Clear, accurate public information, notices and forms that every citizen can read and trust.</p>
-          </div>
-          <div class="audience reveal">
-            <p class="audience-tag">Content creators</p>
-            <p>Subtitles, scripts and voiceover that bring your work to Manipuri audiences without losing your voice.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Process -->
-    <section class="section" id="process">
-      <div class="container">
-        <header class="section-head reveal">
-          <p class="eyebrow"><span class="eyebrow-num">03</span> Process</p>
-          <h2>Simple from first message to final file</h2>
-        </header>
-
-        <ol class="steps">
-          <li class="step reveal">
-            <span class="step-num">01</span>
-            <h3>Share</h3>
-            <p>Send your files, links or a short brief. Tell us the language pair, audience and deadline.</p>
+            <p>Documents, notices, forms, reports and websites, translated between English or Hindi and any language of Manipur, or between two of them.</p>
           </li>
-          <li class="step reveal">
-            <span class="step-num">02</span>
-            <h3>Quote</h3>
-            <p>We reply with a clear price and timeline before any work begins.</p>
+          <li class="service card reveal">
+            <span class="service-num">02</span>
+            <svg class="service-icon" aria-hidden="true"><use href="#i-file"/></svg>
+            <h3>Transcription</h3>
+            <p>Accurate, time-stamped transcripts of interviews, meetings, focus groups and field recordings.</p>
           </li>
-          <li class="step reveal">
-            <span class="step-num">03</span>
-            <h3>Translate &amp; review</h3>
-            <p>Your content is translated, then proofread against the source for accuracy and tone.</p>
+          <li class="service card reveal">
+            <span class="service-num">03</span>
+            <svg class="service-icon" aria-hidden="true"><use href="#i-captions"/></svg>
+            <h3>Subtitles &amp; captions</h3>
+            <p>Subtitles for films, documentaries, training videos and social media, delivered as SRT or VTT files.</p>
           </li>
-          <li class="step reveal">
-            <span class="step-num">04</span>
-            <h3>Deliver</h3>
-            <p>Receive files in the format you need, and ask for revisions if anything needs adjusting.</p>
+          <li class="service card reveal">
+            <span class="service-num">04</span>
+            <svg class="service-icon" aria-hidden="true"><use href="#i-pen"/></svg>
+            <h3>Proofreading &amp; editing</h3>
+            <p>A careful second read of existing text for accuracy, spelling, grammar and tone before it goes public.</p>
+          </li>
+          <li class="service card reveal">
+            <span class="service-num">05</span>
+            <svg class="service-icon" aria-hidden="true"><use href="#i-mic"/></svg>
+            <h3>Voiceover &amp; recording</h3>
+            <p>Natural voiceovers by native speakers for awareness campaigns, e-learning, announcements and advertisements.</p>
+          </li>
+          <li class="service card reveal">
+            <span class="service-num">06</span>
+            <svg class="service-icon" aria-hidden="true"><use href="#i-globe"/></svg>
+            <h3>Localization</h3>
+            <p>Apps, websites and campaigns adapted for Manipur's communities, including names, references and formats as well as words.</p>
+          </li>
+          <li class="service card reveal">
+            <span class="service-num">07</span>
+            <svg class="service-icon" aria-hidden="true"><use href="#i-compass"/></svg>
+            <h3>Cultural consulting</h3>
+            <p>Advice on names, customs, idiom and sensitivities, so your message is received the way you intend.</p>
+          </li>
+          <li class="service card reveal">
+            <span class="service-num">08</span>
+            <svg class="service-icon" aria-hidden="true"><use href="#i-script"/></svg>
+            <h3>Script conversion</h3>
+            <p>Meiteilon text converted between Bengali script and Meetei Mayek, with consistent spelling throughout.</p>
+          </li>
+          <li class="service card reveal">
+            <span class="service-num">09</span>
+            <svg class="service-icon" aria-hidden="true"><use href="#i-wave"/></svg>
+            <h3>Speech &amp; text data</h3>
+            <p>Recording, transcription and annotation of speech and text for AI and research in low-resource languages.</p>
           </li>
         </ol>
       </div>
     </section>
 
-    <!-- Lab -->
-    <section class="section lab" id="lab">
+    <!-- Sectors -->
+    <section class="section" id="sectors" aria-labelledby="sectors-title">
       <div class="container">
         <header class="section-head reveal">
-          <p class="eyebrow"><span class="eyebrow-num">04</span> EROL Lab</p>
-          <h2>Building language technology for Manipuri</h2>
+          <p class="eyebrow">Who we work with</p>
+          <h2 id="sectors-title">Trusted words for <em>every sector</em></h2>
+        </header>
+
+        <ul class="sectors">
+          <li class="sector reveal"><span class="sector-icon"><svg aria-hidden="true"><use href="#i-landmark"/></svg></span><h3>Government &amp; public services</h3><p>Notices, schemes, forms and public information every citizen can read.</p></li>
+          <li class="sector reveal"><span class="sector-icon"><svg aria-hidden="true"><use href="#i-heart"/></svg></span><h3>Health</h3><p>Patient information, awareness campaigns and health-worker training.</p></li>
+          <li class="sector reveal"><span class="sector-icon"><svg aria-hidden="true"><use href="#i-book"/></svg></span><h3>Education</h3><p>Textbooks, learning material and courses in learners' own languages.</p></li>
+          <li class="sector reveal"><span class="sector-icon"><svg aria-hidden="true"><use href="#i-hands"/></svg></span><h3>NGOs &amp; humanitarian work</h3><p>Field surveys, relief information and community outreach in several languages at once.</p></li>
+          <li class="sector reveal"><span class="sector-icon"><svg aria-hidden="true"><use href="#i-scale"/></svg></span><h3>Legal &amp; documentation</h3><p>Certificates, affidavits, agreements and official correspondence.</p></li>
+          <li class="sector reveal"><span class="sector-icon"><svg aria-hidden="true"><use href="#i-film"/></svg></span><h3>Media &amp; creators</h3><p>Subtitles, scripts and voiceover for films, music videos and channels.</p></li>
+          <li class="sector reveal"><span class="sector-icon"><svg aria-hidden="true"><use href="#i-bag"/></svg></span><h3>Business</h3><p>Product information, packaging, marketing and customer support.</p></li>
+          <li class="sector reveal"><span class="sector-icon"><svg aria-hidden="true"><use href="#i-chip"/></svg></span><h3>Research &amp; AI</h3><p>Speech and text data for linguistics, technology and language preservation.</p></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Process & quality -->
+    <section class="section section-soft" id="process" aria-labelledby="process-title">
+      <span class="scallop scallop-down" aria-hidden="true"></span>
+      <div class="container">
+        <header class="section-head reveal">
+          <p class="eyebrow">How we work</p>
+          <h2 id="process-title">Simple to start, <em>careful</em> to finish</h2>
+        </header>
+
+        <ol class="steps">
+          <li class="step reveal"><span class="step-num">01</span><h3>Share your brief</h3><p>Send your files or links and tell us the languages, audience and deadline.</p></li>
+          <li class="step reveal"><span class="step-num">02</span><h3>Get a fixed quote</h3><p>We reply with a clear price and delivery date before any work begins.</p></li>
+          <li class="step reveal"><span class="step-num">03</span><h3>Translate &amp; review</h3><p>A native-speaker linguist translates, then a second linguist reviews against the source.</p></li>
+          <li class="step reveal"><span class="step-num">04</span><h3>Deliver &amp; support</h3><p>Receive files in the format you need, with revisions if anything needs adjusting.</p></li>
+        </ol>
+
+        <ul class="quality card reveal" aria-label="Our quality promises">
+          <li><svg class="icon" aria-hidden="true"><use href="#i-users"/></svg><div><h3>Native-speaker linguists</h3><p>People who grew up speaking the language they translate into.</p></div></li>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><div><h3>Second-linguist review</h3><p>Every translation is checked by a second person before delivery.</p></div></li>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg><div><h3>Confidential by default</h3><p>Files are shared only with the people working on them. NDAs on request.</p></div></li>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-list"/></svg><div><h3>Consistent terminology</h3><p>Glossaries for recurring clients, so names and terms never drift.</p></div></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Lab -->
+    <section class="section lab" id="lab" aria-labelledby="lab-title">
+      <span class="scallop scallop-down" aria-hidden="true"></span>
+      <div class="container">
+        <header class="section-head reveal">
+          <p class="eyebrow eyebrow-light">EROL Lab</p>
+          <h2 id="lab-title">Language technology for <em>Manipur</em></h2>
           <p class="section-lede">
-            Our name is also our research agenda. Alongside client work, we&rsquo;re developing open
-            models and datasets so Meiteilon speakers get the same quality of digital tools as
-            speakers of the world&rsquo;s largest languages.
+            Our name is also our research agenda. Alongside client work, we're building open models
+            and datasets so that speakers of Manipur's languages get the same quality of digital tools
+            as speakers of the world's largest languages.
           </p>
         </header>
 
-        <div class="acronym">
-          <div class="acronym-item reveal">
-            <span class="acronym-letter">E</span>
-            <h3>Encoder</h3>
-            <p>Representing Manipuri text so machines can understand it.</p>
-          </div>
-          <div class="acronym-item reveal">
-            <span class="acronym-letter">R</span>
-            <h3>Reconstruct</h3>
-            <p>Carrying meaning faithfully between languages and scripts.</p>
-          </div>
-          <div class="acronym-item reveal">
-            <span class="acronym-letter">O</span>
-            <h3>Optimize</h3>
-            <p>Making tools efficient and practical to run.</p>
-          </div>
-          <div class="acronym-item reveal">
-            <span class="acronym-letter">L</span>
-            <h3>Language</h3>
-            <p>Keeping Meiteilon strong in a digital world.</p>
-          </div>
-        </div>
+        <ol class="acronym">
+          <li class="reveal"><span class="acronym-letter" aria-hidden="true">E</span><h3>Encoder</h3><p>Representing Manipur's languages so machines can understand them.</p></li>
+          <li class="reveal"><span class="acronym-letter" aria-hidden="true">R</span><h3>Reconstruct</h3><p>Carrying meaning faithfully between languages and scripts.</p></li>
+          <li class="reveal"><span class="acronym-letter" aria-hidden="true">O</span><h3>Optimize</h3><p>Making tools efficient and practical to run.</p></li>
+          <li class="reveal"><span class="acronym-letter" aria-hidden="true">L</span><h3>Language</h3><p>Keeping every language of Manipur strong in a digital world.</p></li>
+        </ol>
 
         <div class="lab-foot reveal">
-          <p><span class="status-dot" aria-hidden="true"></span> First models and datasets will be published openly on Hugging Face as they&rsquo;re ready.</p>
+          <p><span class="status-dot" aria-hidden="true"></span> First models and datasets will be published openly on Hugging Face.</p>
           <div class="lab-links">
-            <a class="btn btn-light" href="https://huggingface.co/erolmni" target="_blank" rel="noopener">Follow on Hugging Face</a>
-            <a class="btn btn-ghost-light" href="https://github.com/erolmni" target="_blank" rel="noopener">GitHub</a>
+            <a class="btn btn-light" href="https://huggingface.co/erolmni" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-hf"/></svg> Hugging Face</a>
+            <a class="btn btn-glass" href="https://github.com/erolmni" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-github"/></svg> GitHub</a>
           </div>
+        </div>
+      </div>
+      <span class="scallop scallop-up" aria-hidden="true"></span>
+    </section>
+
+    <!-- About -->
+    <section class="section" id="about" aria-labelledby="about-title">
+      <div class="container about-grid">
+        <figure class="about-photo reveal">
+          <span class="tape" aria-hidden="true"></span>
+          <img src="assets/erol-logo.jpg" alt="The EROL logo: a vintage typewriter with the word EROL typed on the page" width="720" height="717" loading="lazy" decoding="async">
+        </figure>
+
+        <div class="about-copy reveal">
+          <p class="eyebrow">About EROL</p>
+          <h2 id="about-title">Rooted in Imphal, <em>serving all of Manipur</em></h2>
+          <p>
+            EROL Manipuri Language Service was founded in Imphal in 2025. We believe everyone in
+            Manipur deserves information in the language they understand best, whichever of the
+            state's many languages that is.
+          </p>
+          <p>
+            We bring together native-speaker linguists from communities across the state, and treat
+            every language with the same care: faithful to meaning, clear to read, and respectful of
+            the people who speak it.
+          </p>
+
+          <ul class="values">
+            <li><strong>Every community, equally.</strong> We serve all of Manipur's communities and keep our work neutral.</li>
+            <li><strong>Faithful to meaning.</strong> Names, numbers and nuance carried over accurately.</li>
+            <li><strong>Clear to read.</strong> Writing that sounds natural to the people you want to reach.</li>
+          </ul>
+
+          <dl class="facts">
+            <div><dt>Founded</dt><dd>2025</dd></div>
+            <div><dt>Based in</dt><dd>Imphal</dd></div>
+            <div><dt>Team</dt><dd>2–10</dd></div>
+          </dl>
         </div>
       </div>
     </section>
 
-    <!-- About -->
-    <section class="section" id="about">
-      <div class="container about-grid">
-        <div class="about-copy reveal">
-          <p class="eyebrow"><span class="eyebrow-num">05</span> About</p>
-          <h2>Rooted in Imphal</h2>
-          <p>
-            EROL Manipuri Language Service is a small team based in Imphal, Manipur, founded in 2025.
-            We&rsquo;re committed to delivering high-quality, accurate and culturally appropriate
-            translation and localization for Manipuri.
-          </p>
-          <p>
-            We help organizations break the language barrier and reach their audience with
-            clarity and authenticity.
-          </p>
+    <!-- FAQ -->
+    <section class="section section-soft" id="faq" aria-labelledby="faq-title">
+      <span class="scallop scallop-down" aria-hidden="true"></span>
+      <div class="container faq-grid">
+        <header class="section-head reveal">
+          <p class="eyebrow">Questions</p>
+          <h2 id="faq-title">Good to <em>know</em></h2>
+          <p class="section-lede">Can't find your answer? <a href="#contact">Write to us</a>. We reply quickly.</p>
+        </header>
 
-          <ul class="principles">
-            <li><strong>Accuracy.</strong> Meaning, terminology and detail carried over faithfully.</li>
-            <li><strong>Cultural fit.</strong> Language that respects Manipuri tradition, idiom and context.</li>
-            <li><strong>Clarity.</strong> Writing that reads naturally to the people you want to reach.</li>
-          </ul>
+        <div class="faq reveal">
+          <details>
+            <summary>Which languages do you work in?</summary>
+            <p>Meiteilon (Manipuri) and the languages of Manipur's hill communities, 33 in all and listed above, plus English and Hindi. If you need a language that isn't listed, ask us.</p>
+          </details>
+          <details>
+            <summary>How much does a translation cost?</summary>
+            <p>It depends on the language pair, the length and subject of the content, and your deadline. We send a fixed quote before any work starts, so there are no surprises.</p>
+          </details>
+          <details>
+            <summary>How long will my project take?</summary>
+            <p>We agree a delivery date with you when we send the quote. Tell us if you have a firm deadline. Urgent work is often possible.</p>
+          </details>
+          <details>
+            <summary>Can you translate between two languages of Manipur?</summary>
+            <p>Yes, for example from Meiteilon into Tangkhul or Paite. Many public-information projects need several languages at once, and we can coordinate them together.</p>
+          </details>
+          <details>
+            <summary>Will my documents be kept confidential?</summary>
+            <p>Yes. Files are shared only with the linguists working on your project, and we're happy to sign a non-disclosure agreement.</p>
+          </details>
+          <details>
+            <summary>Which file formats do you accept?</summary>
+            <p>Word, PDF, Excel, PowerPoint, plain text, audio and video files, and subtitle formats such as SRT and VTT. If you use another format, let us know.</p>
+          </details>
         </div>
-
-        <dl class="facts reveal">
-          <div><dt>Founded</dt><dd>2025</dd></div>
-          <div><dt>Team</dt><dd>2&ndash;10</dd></div>
-          <div><dt>Headquarters</dt><dd>Imphal, Manipur</dd></div>
-          <div><dt>Languages</dt><dd>Manipuri &#8644; English <span>+ more</span></dd></div>
-        </dl>
       </div>
     </section>
 
     <!-- Contact -->
-    <section class="section section-alt" id="contact">
+    <section class="section" id="contact" aria-labelledby="contact-title">
       <div class="container contact-grid">
         <div class="contact-info reveal">
-          <p class="eyebrow"><span class="eyebrow-num">06</span> Contact</p>
-          <h2>Tell us about your project</h2>
-          <p class="section-lede">Share a few details and we&rsquo;ll get back to you with a quote and timeline.</p>
+          <p class="eyebrow">Contact</p>
+          <h2 id="contact-title">Let's work <em>together</em></h2>
+          <p class="section-lede">Tell us about your project and we'll reply with a fixed quote and a delivery date.</p>
 
-          <dl class="contact-list">
-            <div>
-              <dt>Email</dt>
-              <dd><a href="mailto:erolmanipuri@gmail.com">erolmanipuri@gmail.com</a></dd>
-            </div>
-            <div>
-              <dt>Location</dt>
-              <dd>Imphal, Manipur 795148, India</dd>
-            </div>
-            <div>
-              <dt>Elsewhere</dt>
-              <dd class="social">
-                <a href="https://www.linkedin.com/company/erolmni" target="_blank" rel="noopener">LinkedIn</a>
-                <a href="https://www.instagram.com/erolmni/" target="_blank" rel="noopener">Instagram</a>
-                <a href="https://huggingface.co/erolmni" target="_blank" rel="noopener">Hugging Face</a>
-                <a href="https://github.com/erolmni" target="_blank" rel="noopener">GitHub</a>
-              </dd>
-            </div>
-          </dl>
+          <div class="contact-email card">
+            <svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg>
+            <a href="mailto:erolmanipuri@gmail.com" id="email-link">erolmanipuri@gmail.com</a>
+            <button class="copy-btn" id="copy-email" type="button" data-copy="erolmanipuri@gmail.com">
+              <svg class="icon" aria-hidden="true"><use href="#i-copy"/></svg><span>Copy</span>
+            </button>
+          </div>
+          <p class="contact-line"><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg> Imphal, Manipur 795148, India</p>
+
+          <ul class="socials" aria-label="EROL elsewhere">
+            <li><a href="https://www.linkedin.com/company/erolmni" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-linkedin"/></svg> LinkedIn</a></li>
+            <li><a href="https://www.instagram.com/erolmni/" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-instagram"/></svg> Instagram</a></li>
+            <li><a href="https://huggingface.co/erolmni" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-hf"/></svg> Hugging Face</a></li>
+            <li><a href="https://github.com/erolmni" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-github"/></svg> GitHub</a></li>
+          </ul>
         </div>
 
-        <form class="quote-form reveal" id="quote-form" data-email="erolmanipuri@gmail.com">
-          <div class="field-row">
-            <label class="field">
-              <span>Name</span>
-              <input type="text" name="name" autocomplete="name" required>
-            </label>
-            <label class="field">
-              <span>Email</span>
-              <input type="email" name="email" autocomplete="email" required>
-            </label>
-          </div>
-
-          <label class="field">
-            <span>Organization <em>(optional)</em></span>
-            <input type="text" name="organization" autocomplete="organization">
-          </label>
+        <form class="quote-form card reveal" id="quote-form" action="mailto:erolmanipuri@gmail.com" method="post" enctype="text/plain" data-email="erolmanipuri@gmail.com">
+          <fieldset class="pills">
+            <legend>What do you need?</legend>
+            <div class="pill-group">
+              <label><input type="radio" name="service" value="Translation" required checked><span>Translation</span></label>
+              <label><input type="radio" name="service" value="Transcription"><span>Transcription</span></label>
+              <label><input type="radio" name="service" value="Subtitles"><span>Subtitles</span></label>
+              <label><input type="radio" name="service" value="Proofreading"><span>Proofreading</span></label>
+              <label><input type="radio" name="service" value="Voiceover"><span>Voiceover</span></label>
+              <label><input type="radio" name="service" value="Localization"><span>Localization</span></label>
+              <label><input type="radio" name="service" value="Speech & text data"><span>Speech &amp; text data</span></label>
+              <label><input type="radio" name="service" value="Something else"><span>Something else</span></label>
+            </div>
+          </fieldset>
 
           <div class="field-row">
-            <label class="field">
-              <span>Service</span>
-              <select name="service" required>
-                <option value="" disabled selected>Choose a service</option>
-                <option>Translation</option>
-                <option>Transcription &amp; subtitling</option>
-                <option>Proofreading &amp; editing</option>
-                <option>Cultural consulting</option>
-                <option>Voiceover</option>
-                <option>Content localization</option>
-                <option>Something else</option>
-              </select>
-            </label>
-            <label class="field">
-              <span>Languages</span>
-              <input type="text" name="languages" placeholder="e.g. English → Manipuri" required>
-            </label>
+            <div class="field">
+              <label for="f-from">From language</label>
+              <input id="f-from" name="from" type="text" list="lang-options" placeholder="e.g. English" autocomplete="off" required aria-describedby="f-from-error">
+              <p class="field-error" id="f-from-error" hidden>Please tell us the source language.</p>
+            </div>
+            <div class="field">
+              <label for="f-into">Into language(s)</label>
+              <input id="f-into" name="into" type="text" list="lang-options" placeholder="e.g. Tangkhul, Paite" autocomplete="off" required aria-describedby="f-into-error">
+              <p class="field-error" id="f-into-error" hidden>Please tell us the language(s) you need.</p>
+            </div>
+          </div>
+          <datalist id="lang-options"></datalist>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="f-name">Your name</label>
+              <input id="f-name" name="name" type="text" autocomplete="name" required aria-describedby="f-name-error">
+              <p class="field-error" id="f-name-error" hidden>Please enter your name.</p>
+            </div>
+            <div class="field">
+              <label for="f-email">Email</label>
+              <input id="f-email" name="email" type="email" autocomplete="email" required aria-describedby="f-email-error">
+              <p class="field-error" id="f-email-error" hidden>Please enter a valid email address.</p>
+            </div>
           </div>
 
-          <label class="field">
-            <span>Deadline <em>(optional)</em></span>
-            <input type="date" name="deadline">
-          </label>
+          <div class="field-row">
+            <div class="field">
+              <label for="f-org">Organization <span class="optional">(optional)</span></label>
+              <input id="f-org" name="organization" type="text" autocomplete="organization">
+            </div>
+            <div class="field">
+              <label for="f-deadline">Deadline <span class="optional">(optional)</span></label>
+              <input id="f-deadline" name="deadline" type="date">
+            </div>
+          </div>
 
-          <label class="field">
-            <span>Project details</span>
-            <textarea name="message" rows="5" placeholder="What is the content, roughly how long is it, and who is it for?" required></textarea>
-          </label>
+          <div class="field">
+            <label for="f-message">About your project</label>
+            <textarea id="f-message" name="message" rows="5" placeholder="What is the content, roughly how long is it, and who is it for?" required aria-describedby="f-message-error"></textarea>
+            <p class="field-error" id="f-message-error" hidden>Please add a few details about your project.</p>
+          </div>
 
-          <button class="btn btn-block" type="submit">Send request</button>
-          <p class="form-note" id="form-status" role="status">This opens your email app with the details filled in.</p>
+          <button class="btn btn-primary btn-block" type="submit">Send request <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          <p class="form-status" id="form-status" role="status">This opens your email app with everything filled in.</p>
         </form>
       </div>
     </section>
   </main>
 
-  <footer class="site-footer">
-    <div class="stripes" aria-hidden="true">
-      <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
-    </div>
+  <footer class="footer">
+    <span class="scallop scallop-down" aria-hidden="true"></span>
     <div class="container footer-grid">
-      <div>
-        <a href="#top" class="brand brand-footer" aria-label="EROL — back to top">
-          <span class="brand-mark">EROL</span>
-          <span class="brand-sub">Manipuri Language Service</span>
+      <div class="footer-brand">
+        <a class="brand brand-footer" href="#top" aria-label="EROL, back to top">
+          <img class="brand-mark" src="assets/erol-mark.jpg" alt="" width="40" height="40" loading="lazy">
+          <span class="brand-name">EROL</span>
         </a>
-        <p class="footer-tag">Encoder &middot; Reconstruct &middot; Optimize &middot; Language</p>
+        <p>Translation and language services for every language of Manipur.</p>
+        <p class="footer-motto">Encoder · Reconstruct · Optimize · Language</p>
       </div>
       <nav class="footer-nav" aria-label="Footer">
-        <a href="#services">Services</a>
-        <a href="#process">Process</a>
-        <a href="#lab">EROL Lab</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
+        <h2>Explore</h2>
+        <ul>
+          <li><a href="#languages">Languages</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#process">Process</a></li>
+          <li><a href="#lab">EROL Lab</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
       </nav>
-      <nav class="footer-nav" aria-label="Social">
-        <a href="https://www.linkedin.com/company/erolmni" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="https://www.instagram.com/erolmni/" target="_blank" rel="noopener">Instagram</a>
-        <a href="https://huggingface.co/erolmni" target="_blank" rel="noopener">Hugging Face</a>
-        <a href="https://github.com/erolmni" target="_blank" rel="noopener">GitHub</a>
-      </nav>
+      <div class="footer-nav">
+        <h2>Contact</h2>
+        <ul>
+          <li><a href="mailto:erolmanipuri@gmail.com">erolmanipuri@gmail.com</a></li>
+          <li>Imphal, Manipur 795148</li>
+          <li><a href="https://www.linkedin.com/company/erolmni" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://www.instagram.com/erolmni/" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="https://huggingface.co/erolmni" target="_blank" rel="noopener">Hugging Face</a> · <a href="https://github.com/erolmni" target="_blank" rel="noopener">GitHub</a></li>
+        </ul>
+      </div>
     </div>
     <div class="container footer-bottom">
-      <p>&copy; <span id="year">2026</span> EROL Manipuri Language Service. Imphal, Manipur.</p>
+      <p>© <span id="year">2026</span> EROL Manipuri Language Service. All rights reserved.</p>
+      <p>Map: illustrative, boundaries approximate.</p>
     </div>
   </footer>
-
-  <script src="js/main.js" defer></script>
 </body>
 </html>

@@ -1,0 +1,12 @@
+{
+  "name": "EROL · All Manipur language services",
+  "short_name": "EROL",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fff7f9",
+  "theme_color": "#2a1424",
+  "icons": [
+    { "src": "/assets/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "/assets/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
+  ]
+}

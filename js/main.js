@@ -100,8 +100,8 @@
   }
 
   /* ---------- Languages by district ----------
-     Main and minor languages follow the language table in Wikipedia's
-     "List of districts of Manipur" (Kabui listed as Rongmei, Poula as Poumai). */
+     Main and minor languages per district follow the published district
+     language table (Kabui listed as Rongmei, Poula as Poumai). */
 
   const DISTRICTS = {
     'Bishnupur': { main: ['Meiteilon'], also: ['Kom', 'Rongmei'] },
@@ -129,9 +129,10 @@
   });
 
   const LANGUAGES = {};
+  const entry = (lang) => (LANGUAGES[lang] = LANGUAGES[lang] || { main: [], also: [] });
   Object.entries(DISTRICTS).forEach(([district, { main, also }]) => {
-    main.forEach((lang) => ((LANGUAGES[lang] ||= { main: [], also: [] }).main.push(district)));
-    also.forEach((lang) => ((LANGUAGES[lang] ||= { main: [], also: [] }).also.push(district)));
+    main.forEach((lang) => entry(lang).main.push(district));
+    also.forEach((lang) => entry(lang).also.push(district));
   });
 
   const list = (items) => (items.length <= 1 ? items.join('') : `${items.slice(0, -1).join(', ')} and ${items[items.length - 1]}`);

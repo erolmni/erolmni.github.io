@@ -379,10 +379,41 @@
       lines.push('', get('message'));
 
       const subject = `Quote request: ${get('service')} (${get('from')} to ${get('into')})`;
-      window.location.href = `mailto:${form.dataset.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines.join('\n'))}`;
+      const button = form.querySelector('button[type="submit"]');
+      button.disabled = true;
+      status.className = 'form-status';
+      status.textContent = 'Sending…';
 
-      status.className = 'form-status is-success';
-      status.textContent = `Your email app should now open with your request. If it doesn't, write to ${form.dataset.email}.`;
+      fetch(`https://formsubmit.co/ajax/${form.dataset.email}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          _subject: subject,
+          _replyto: get('email'),
+          _template: 'table',
+          _captcha: 'false',
+          Service: get('service'),
+          From: get('from'),
+          Into: get('into'),
+          Name: get('name'),
+          Email: get('email'),
+          Organization: get('organization') || '-',
+          Deadline: get('deadline') || '-',
+          Message: get('message'),
+        }),
+      })
+        .then((res) => res.json().then((json) => ({ ok: res.ok, json })))
+        .then(({ ok, json }) => {
+          if (!ok || String(json.success) !== 'true') throw new Error(json.message || 'failed');
+          form.reset();
+          status.className = 'form-status is-success';
+          status.textContent = 'Thank you! Your request has been sent. We will reply by email soon.';
+        })
+        .catch(() => {
+          status.className = 'form-status is-error';
+          status.textContent = `Sorry, it could not be sent. Please email us at ${form.dataset.email}.`;
+        })
+        .then(() => { button.disabled = false; });
     });
   }
 
